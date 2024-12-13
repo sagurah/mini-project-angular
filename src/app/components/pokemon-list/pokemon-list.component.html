@@ -1,0 +1,65 @@
+<div class="flex items-center justify-center min-h-screen p-5">
+  <div class="flex flex-col gap-3 p-7 shadow-lg rounded-lg bg-blue-100">
+    <div class="flex justify-between gap-3">
+      <div class="flex flex-col justify-start">
+        <span class="text-3xl font-bold italic">Welcome to Pokemon Page!</span>
+        <span>Here's some of the pokemons...</span>
+        <input
+          placeholder="bulbasaur..."
+          [(ngModel)]="filter"
+          (input)="filterPokemon()"
+          type="text"
+          class="mt-2 rounded-lg shadow-md border-2 border-black"
+        />
+      </div>
+      <div class="flex justify-end">
+        <button
+          class="bg-slate-600 py-1 px-3 rounded-lg hover:bg-slate-200 transition-all text-white hover:text-black w-full"
+          (click)="toggleTheme()"
+        >
+          Toggle Theme
+        </button>
+      </div>
+    </div>
+    <span class="p-0.5 block rounded-lg bg-blue-300"></span>
+    <div class="grid grid-cols-10 gap-3 mb-5">
+      <div class="flex flex-col" *ngFor="let pokemon of pokemonList">
+        <div
+          (click)="selectPokemon(pokemon.name)"
+          class="flex flex-col shadow-2xl bg-white hover:cursor-pointer hover:scale-110 transition-all border-2 border-black rounded-lg items-center justify-center p-2"
+        >
+          <img [src]="pokemon.image" [alt]="pokemon.name" class="w-20 h-20" />
+          <span>{{ pokemon.name }}</span>
+        </div>
+      </div>
+    </div>
+    <div class="flex justify-between">
+      <button
+        (click)="previousPage()"
+        class="bg-slate-600 p-2 rounded-lg hover:bg-slate-200 transition-all text-white hover:text-black w-full"
+        [disabled]="currentPage === 1"
+      >
+        Previous Pokemon
+      </button>
+      <button
+        (click)="nextPage()"
+        class="bg-slate-600 p-2 rounded-lg hover:bg-slate-200 transition-all text-white hover:text-black w-full"
+        [disabled]="currentPage === totalPages"
+      >
+        Next Pokemon
+      </button>
+    </div>
+    <div class="flex items-center justify-center">
+      <app-pokemon-detail [pokemon]="selectedPokemon"></app-pokemon-detail>
+    </div>
+    <span class="p-0.5 block rounded-lg bg-blue-300"></span>
+    <div class="flex items-center justify-center gap-2">
+      <button
+        class="bg-slate-600 p-2 rounded-lg hover:bg-slate-200 transition-all text-white hover:text-black w-full"
+        routerLink="/"
+      >
+        Back Home
+      </button>
+    </div>
+  </div>
+</div>

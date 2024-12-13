@@ -1,0 +1,15 @@
+<div
+  class="flex flex-col shadow-2xl bg-white border-2 border-black rounded-lg items-center justify-center p-2"
+*ngIf="pokemon !== null">
+  <span class="text-center text-2xl font-semibold italic">SELECTED POKEMON</span>
+  <img [src]="pokemon.sprites.front_default" class="w-20 h-20" />
+  <span class="underline">
+    {{ pokemon.name }}
+  </span>
+  <div class="flex items-center justify-center gap-2 my-2">
+    <span *ngFor="let ability of pokemon.abilities" class="bg-blue-400 p-2 rounded-lg">
+      {{ ability.ability.name }}
+    </span>
+  </div>
+  <button (click)="clearPokemon()" class="bg-slate-600 p-2 rounded-lg hover:bg-slate-200 transition-all text-white hover:text-black w-full">Clear Pokemon</button>
+</div>
