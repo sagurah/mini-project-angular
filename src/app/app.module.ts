@@ -8,6 +8,7 @@ import { BiodataComponent } from './biodata/biodata.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { PokemonListComponent } from './components/pokemon-list/pokemon-list.component';
 import { PokemonDetailComponent } from './components/pokemon-detail/pokemon-detail.component';
+import { PokemonDetailPageComponent } from './components/pokemon-detail-page/pokemon-detail-page.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { PokemonDetailComponent } from './components/pokemon-detail/pokemon-deta
     BiodataComponent,
     HomepageComponent,
     PokemonListComponent,
-    PokemonDetailComponent
+    PokemonDetailComponent,
+    PokemonDetailPageComponent
   ],
   imports: [
     BrowserModule,

@@ -9,6 +9,7 @@ import { PokemonService } from '../../services/pokemon.service';
   styleUrl: './pokemon-list.component.css'
 })
 export class PokemonListComponent implements OnInit, OnChanges, OnDestroy {
+  isLoading: boolean = false
   pokemonList: any[] = []
   filteredPokemonList: any[] = []
   paginatedPokemon: any[] = []
@@ -18,7 +19,7 @@ export class PokemonListComponent implements OnInit, OnChanges, OnDestroy {
   selectedElement: string = ''
   elements: string[] = ['fire', 'water', 'grass', 'electric, psychic', 'ice', 'dragon', 'dark', 'fairy', 'normal', 'fighting', 'flying', 'poison', 'ground', 'rock', 'bug', 'ghost', 'steel']
   currentPage: number = 1
-  itemsPerPage: number = 10
+  itemsPerPage: number = 5
   totalPages: number = 0
 
   constructor(private pokemonService: PokemonService) {
@@ -27,6 +28,7 @@ export class PokemonListComponent implements OnInit, OnChanges, OnDestroy {
 
   async ngOnInit() {
     await this.fetchPokemonList()
+    this.updatePagination()
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -38,20 +40,20 @@ export class PokemonListComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   async fetchPokemonList() {
+    this.isLoading = true
     const response = await this.pokemonService.getPokemonList(25)
-    this.pokemonList = await Promise.all(
-      response.map(async (pokemon: any) => {
-        const details = await this.pokemonService.getPokemonDetail(pokemon.name)
-
-        return {
-          name: pokemon.name,
-          url: pokemon.url,
-          image: details.sprites.front_default,
-          element: details.types[0]?.type?.name
-        }
+    for (const pokemon of response) {
+      const pokemonDetail = await this.pokemonService.getPokemonDetail(pokemon.name)
+      this.pokemonList.push({
+        name: pokemon.name,
+        url: pokemon.url,
+        image: pokemonDetail.sprites.front_default,
+        element: pokemonDetail.types[0]?.type?.name
       })
-    )
+    }
     this.filteredPokemonList = this.pokemonList
+    this.isLoading = false
+    this.updatePagination()
   }
 
   filterPokemon() {
@@ -61,6 +63,9 @@ export class PokemonListComponent implements OnInit, OnChanges, OnDestroy {
 
       return matchesName && matchesElement
     })
+
+    this.currentPage = 1
+    this.updatePagination()
   }
 
   updatePagination() {

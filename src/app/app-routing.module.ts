@@ -3,15 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { BiodataComponent } from './biodata/biodata.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { PokemonListComponent } from './components/pokemon-list/pokemon-list.component';
+import { PokemonDetailPageComponent } from './components/pokemon-detail-page/pokemon-detail-page.component';
 
 const routes: Routes = [
   {
     path: 'biodata',
     component: BiodataComponent
-  },
-  {
-    path: '**',
-    redirectTo: 'pokemon'
   },
   {
     path: 'homepage',
@@ -20,7 +17,15 @@ const routes: Routes = [
   {
     path: 'pokemon',
     component: PokemonListComponent
-  }
+  },
+  {
+    path: 'pokemon/:name',
+    component: PokemonDetailPageComponent
+  },
+  {
+    path: '**',
+    redirectTo: 'homepage'
+  },
 ];
 
 @NgModule({

@@ -1,5 +1,6 @@
 <div
-  class="flex flex-col shadow-2xl bg-white border-2 border-black rounded-lg items-center justify-center p-2"
+  [routerLink]="'/pokemon/' + pokemon.name"
+  class="flex flex-col shadow-2xl bg-white border-2 border-black rounded-lg items-center justify-center p-2 hover:bg-slate-400 hover:text-white transition-all hover:cursor-pointer"
 *ngIf="pokemon !== null">
   <span class="text-center text-2xl font-semibold italic">SELECTED POKEMON</span>
   <img [src]="pokemon.sprites.front_default" class="w-20 h-20" />
