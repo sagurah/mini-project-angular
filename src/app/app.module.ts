@@ -9,6 +9,8 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { PokemonListComponent } from './components/pokemon-list/pokemon-list.component';
 import { PokemonDetailComponent } from './components/pokemon-detail/pokemon-detail.component';
 import { PokemonDetailPageComponent } from './components/pokemon-detail-page/pokemon-detail-page.component';
+import { provideHttpClient } from '@angular/common/http';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,10 @@ import { PokemonDetailPageComponent } from './components/pokemon-detail-page/pok
     AppRoutingModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    provideHttpClient(),
+    provideAnimationsAsync()
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

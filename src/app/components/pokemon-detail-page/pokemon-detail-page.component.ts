@@ -6,7 +6,6 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-pokemon-detail-page',
   standalone: false,
-
   templateUrl: './pokemon-detail-page.component.html',
   styleUrl: './pokemon-detail-page.component.css'
 })
@@ -29,8 +28,6 @@ export class PokemonDetailPageComponent implements OnInit {
     this.router.navigateByUrl(newUrl).then(() => {
       window.location.href = newUrl
     })
-
-    // this.router.navigate([`/pokemon/${name}`])
   }
 
   async fetchPokemonEvolution() {
