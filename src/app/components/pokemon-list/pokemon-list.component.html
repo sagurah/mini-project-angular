@@ -1,15 +1,21 @@
 <div class="flex items-center justify-center min-h-screen p-5">
   <div class="flex flex-col gap-3 p-7 shadow-lg rounded-lg bg-blue-100">
-    <div class="flex flex-col justify-start">
-      <span class="text-3xl font-bold italic">Welcome to Pokemon Page!</span>
-      <span>Here's some of the pokemons...</span>
-      <input
-        placeholder="bulbasaur..."
-        [(ngModel)]="filter"
-        (input)="filterPokemon()"
-        type="text"
-        class="mt-2 rounded-lg shadow-md border-2 border-black"
-      />
+    <div class="flex justify-between gap-5">
+      <div class="flex flex-col justify-start">
+        <span class="text-3xl font-bold italic">Welcome to Pokemon Page!</span>
+        <span>Here's some of the pokemons...</span>
+        <input
+          placeholder="bulbasaur..."
+          [(ngModel)]="filter"
+          (input)="filterPokemon()"
+          type="text"
+          class="mt-2 rounded-lg shadow-md border-2 border-black"
+        />
+      </div>
+      <span class="p-0.5 block rounded-lg bg-blue-300"></span>
+      <div class="flex flex-col justify-end">
+        <button mat-fab extended [routerLink]="'/pokemon-data'">Manage Pokemon</button>
+      </div>
     </div>
     <span class="p-0.5 block rounded-lg bg-blue-300"></span>
     <div class="grid grid-cols-5 gap-3 mb-5">

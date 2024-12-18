@@ -1,3 +1,52 @@
 <div class="flex p-5 items-center justify-center bg-slate-300 border-2 border-black rounded-lg">
-  
+  <form [formGroup]="formPurchase" class="flex flex-col gap-2">
+    <span class="text-xl p-2 rounded-lg font-semibold">Buy Pokemon</span>
+    <mat-form-field>
+      <mat-label>Firstname</mat-label>
+      <input type="text" matInput formControlName="firstName" />
+      @if (formPurchase.hasError('required', 'firstName')) {
+        <mat-error>Firstname is required</mat-error>
+      }
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Lastname</mat-label>
+      <input type="text" matInput formControlName="lastName" />
+      @if (formPurchase.hasError('required', 'lastName')) {
+        <mat-error>Lastname is required</mat-error>
+      }
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input type="email" matInput formControlName="email" />
+      @if (formPurchase.hasError('required', 'email')) {
+        <mat-error>Email is required</mat-error>
+      } @else if (formPurchase.hasError('email', 'email')) {
+        <mat-error>Invalid email</mat-error>
+      }
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Address</mat-label>
+      <input type="text" matInput formControlName="address" />
+      @if (formPurchase.hasError('required', 'address')) {
+        <mat-error>Address is required</mat-error>
+      }
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Phone Number</mat-label>
+      <input type="text" matInput formControlName="phone" />
+      @if (formPurchase.hasError('required', 'phone')) {
+        <mat-error>Phone Number is required</mat-error>
+      }
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select formControlName="buyOption" placeholder="Purchase Type">
+        <mat-option value="all">Buy All</mat-option>
+        <mat-option value="one">Buy One</mat-option>
+      </mat-select>
+      @if (formPurchase.hasError('required', 'buyOption')) {
+        <mat-error>Purchase Type is required</mat-error>
+      }
+    </mat-form-field>
+    <button mat-raised-button color="primary" [disabled]="formPurchase.invalid" (click)="onSubmit()">Buy</button>
+  </form>
 </div>

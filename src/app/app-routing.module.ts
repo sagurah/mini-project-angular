@@ -4,6 +4,7 @@ import { BiodataComponent } from './biodata/biodata.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { PokemonListComponent } from './components/pokemon-list/pokemon-list.component';
 import { PokemonDetailPageComponent } from './components/pokemon-detail-page/pokemon-detail-page.component';
+import { PokemonDataPageComponent } from './components/pokemon-data-page/pokemon-data-page.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: 'pokemon/:name',
     component: PokemonDetailPageComponent
+  },
+  {
+    path: 'pokemon-data',
+    component: PokemonDataPageComponent
   },
   {
     path: '**',

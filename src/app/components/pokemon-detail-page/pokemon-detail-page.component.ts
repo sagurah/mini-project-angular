@@ -1,5 +1,4 @@
-import { ActivatedRoute } from '@angular/router';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PokemonService } from './../../services/pokemon.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -10,15 +9,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrl: './pokemon-detail-page.component.css'
 })
 export class PokemonDetailPageComponent implements OnInit {
+  isFormVisible: boolean = false
   pokemon: any = {}
   pokemonEvolution: any[] = []
-  selectedEvolutionName: string = ''
+  selectedEvolutionName: string | null = ''
   currentAudio: any = null
 
   constructor(
     private pokemonService: PokemonService,
-    public route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    public route: ActivatedRoute
   ) {}
 
   setSelectedEvolutionName(name: string) {
@@ -60,6 +60,7 @@ export class PokemonDetailPageComponent implements OnInit {
 
   async ngOnInit() {
     const name = this.route.snapshot.paramMap.get('name')
+    this.selectedEvolutionName = name
 
     if (name) {
       const fetchedPokemon = await this.pokemonService.getPokemonDetail(name)

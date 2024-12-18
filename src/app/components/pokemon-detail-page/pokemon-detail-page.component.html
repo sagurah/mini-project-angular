@@ -1,25 +1,31 @@
-<div class="flex items-center justify-center min-h-screen">
-  <div class="p-5 bg-slate-300 rounded-lg shadow-lg flex flex-col items-center">
-    <h1 class="text-3xl font-bold capitalize">
-      <span class="bg-blue-400 p-2 mr-2 rounded-lg">
-        #{{ pokemon.id }}
-      </span>
-      {{ pokemon.name }}
-    </h1>
-    <img [src]="pokemon.image" [alt]="pokemon.name" class="w-40 h-40" />
-    <button class="p-2 bg-blue-600 rounded-xl text-white hover:bg-blue-400 transition-all" (click)="playSound()">Play Sound</button>
-    <p class="mt-2">Height: {{ pokemon.height }}</p>
-    <p>Weight: {{ pokemon.weight }}</p>
-    <p>Abilities: {{ pokemon.abilities }}</p>
-    <div class="flex flex-col items-center justify-center my-4 border-2 p-2 border-black">
-      <span class="text-xl mb-2 font-bold">Evolution Chain</span>
-      <div (click)="setSelectedEvolutionName(ctx.name)" *ngFor="let ctx of pokemonEvolution" [ngClass]="route.snapshot.paramMap.get('name') === ctx.name ? 'bg-indigo-400 hover:cursor-default' : 'hover:bg-indigo-400 transition-all hover:cursor-pointer bg-indigo-600'" class="py-2 px-4 mb-2 rounded-bl-full rounded-tr-full text-white">
-        <span class="uppercase">{{ ctx.name }}</span>
+<div class="flex items-center justify-center gap-10">
+  <div class="flex items-center justify-center min-h-screen">
+    <div class="p-5 bg-slate-300 rounded-lg shadow-lg flex flex-col items-center">
+      <h1 class="text-3xl font-bold capitalize">
+        <span class="bg-blue-400 p-2 mr-2 rounded-lg">
+          #{{ pokemon.id }}
+        </span>
+        {{ pokemon.name }}
+      </h1>
+      <img [src]="pokemon.image" [alt]="pokemon.name" class="w-40 h-40" />
+      <button mat-fab extended (click)="playSound()">Play Sound</button>
+      <p class="mt-2">Height: {{ pokemon.height }}</p>
+      <p>Weight: {{ pokemon.weight }}</p>
+      <p>Abilities: {{ pokemon.abilities }}</p>
+      <div class="flex flex-col items-center justify-center my-4 border-2 p-2 border-black">
+        <span class="text-xl mb-2 font-bold">Evolution Chain</span>
+        <div (click)="setSelectedEvolutionName(ctx.name)" *ngFor="let ctx of pokemonEvolution" [ngClass]="route.snapshot.paramMap.get('name') === ctx.name ? 'bg-indigo-400 hover:cursor-default' : 'hover:bg-indigo-400 transition-all hover:cursor-pointer bg-indigo-600'" class="py-2 px-4 mb-2 rounded-bl-full rounded-tr-full text-white">
+          <span class="uppercase">{{ ctx.name }}</span>
+        </div>
       </div>
+      <button mat-fab extended (click)="isFormVisible = true">Buy Pokemon</button>
+      <a routerLink="/pokemon" class="mt-5 text-blue-500 hover:underline"
+        >Back to Pokémon List</a
+      >
     </div>
-    <button>Buy Pokemon</button>
-    <a routerLink="/pokemon" class="mt-5 text-blue-500 hover:underline"
-      >Back to Pokémon List</a
-    >
+  </div>
+  <div *ngIf="isFormVisible">
+    <app-purchase-modal [currentPokemon]="selectedEvolutionName" [evolutionChain]="pokemonEvolution"></app-purchase-modal>
   </div>
 </div>
+

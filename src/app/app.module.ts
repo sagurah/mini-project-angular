@@ -1,6 +1,10 @@
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,6 +15,7 @@ import { PokemonDetailComponent } from './components/pokemon-detail/pokemon-deta
 import { PokemonDetailPageComponent } from './components/pokemon-detail-page/pokemon-detail-page.component';
 import { provideHttpClient } from '@angular/common/http';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { PurchaseModalComponent } from './components/purchase-modal/purchase-modal.component';
 
 @NgModule({
   declarations: [
@@ -19,12 +24,18 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     HomepageComponent,
     PokemonListComponent,
     PokemonDetailComponent,
-    PokemonDetailPageComponent
+    PokemonDetailPageComponent,
+    PurchaseModalComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatSelectModule,
   ],
   providers: [
     provideHttpClient(),
