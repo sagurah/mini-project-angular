@@ -1,5 +1,7 @@
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { NgModule } from '@angular/core';
@@ -16,6 +18,14 @@ import { PokemonDetailPageComponent } from './components/pokemon-detail-page/pok
 import { provideHttpClient } from '@angular/common/http';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { PurchaseModalComponent } from './components/purchase-modal/purchase-modal.component';
+import { environment } from './environments/environment';
+import { NavbarComponent } from './navbar/navbar.component';
+import { MatCardModule } from '@angular/material/card';
+import { AuthComponent } from './auth/auth.component';
+import { getAuth } from 'firebase/auth';
+import { provideAuth } from '@angular/fire/auth';
+import { LayoutComponent } from './layout/layout.component';
+
 
 @NgModule({
   declarations: [
@@ -25,8 +35,11 @@ import { PurchaseModalComponent } from './components/purchase-modal/purchase-mod
     PokemonListComponent,
     PokemonDetailComponent,
     PokemonDetailPageComponent,
-    PurchaseModalComponent
-  ],
+    PurchaseModalComponent,
+    NavbarComponent,
+    AuthComponent,
+    LayoutComponent
+   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -36,8 +49,12 @@ import { PurchaseModalComponent } from './components/purchase-modal/purchase-mod
     MatInputModule,
     MatFormFieldModule,
     MatSelectModule,
+    MatCardModule
   ],
   providers: [
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideFirestore(() => getFirestore()),
+    provideAuth(() => getAuth()),
     provideHttpClient(),
     provideAnimationsAsync()
   ],

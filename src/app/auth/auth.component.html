@@ -1,0 +1,75 @@
+<div class="flex items-center justify-center min-h-screen">
+  <mat-card class="p-4 gap-4">
+    <mat-card-header>
+      <mat-card-title>
+        <span class="text-2xl font-bold">Auth Page</span>
+      </mat-card-title>
+      <mat-card-subtitle class="text-md opacity-70">Welcome to auth page</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="formLogin" *ngIf="isLogin">
+        <mat-form-field class="w-full">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" type="email" />
+          <mat-error *ngIf="formLogin.hasError('required', 'email')">
+            Email is required
+          </mat-error>
+          <mat-error *ngIf="formLogin.hasError('email', 'email')">
+            Email is invalid
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="w-full">
+          <mat-label>Password</mat-label>
+          <input matInput formControlName="password" type="password" />
+          <mat-error *ngIf="formLogin.hasError('required', 'password')">
+            Password is required
+          </mat-error>
+        </mat-form-field>
+        <button
+          mat-raised-button
+          color="primary"
+          class="w-full"
+          (click)="login()"
+        >
+          Login
+        </button>
+        <div class="flex items-center justify-center mt-4">
+          <span class="text-center text-sm opacity-70 text-blue-700 hover:underline hover:cursor-pointer" (click)="isLogin = false">Register here</span>
+        </div>
+      </form>
+      <form [formGroup]="formLogin" *ngIf="!isLogin">
+        <mat-form-field class="w-full">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" type="email" />
+          <mat-error *ngIf="formLogin.hasError('required', 'email')">
+            Email is required
+          </mat-error>
+          <mat-error *ngIf="formLogin.hasError('email', 'email')">
+            Email is invalid
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="w-full">
+          <mat-label>Password</mat-label>
+          <input matInput formControlName="password" type="password" />
+          <mat-error *ngIf="formLogin.hasError('required', 'password')">
+            Password is required
+          </mat-error>
+        </mat-form-field>
+        <div class="flex gap-3">
+          <button
+            mat-raised-button
+            color="primary"
+            class="w-full"
+            (click)="register()"
+          >
+            Register
+          </button>
+        </div>
+        <div class="flex items-center justify-center mt-4">
+          <span class="text-center text-sm opacity-70 text-blue-700 hover:underline hover:cursor-pointer" (click)="isLogin = true">Login here</span>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+</div>

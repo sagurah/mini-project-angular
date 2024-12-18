@@ -38,6 +38,7 @@ import { CommonModule } from '@angular/common';
 export class PokemonDataPageComponent implements OnInit, AfterViewInit {
   boughtPokemonData = new MatTableDataSource<any>([]);
   isEdit: boolean = false;
+  isDirty: boolean = false;
   isViewingDetails: boolean = false;
   selectedDataId: string = '';
   selectedPokemons: any[] = [];
@@ -70,6 +71,10 @@ export class PokemonDataPageComponent implements OnInit, AfterViewInit {
   }
 
   async ngOnInit() {
+    this.formEditPurchase.valueChanges.subscribe(() => {
+      this.isDirty = this.formEditPurchase.dirty
+    })
+
     await this.fetchBoughtPokemonData();
   }
 
@@ -120,5 +125,13 @@ export class PokemonDataPageComponent implements OnInit, AfterViewInit {
   closeDetails() {
     this.isViewingDetails = false
     this.selectedPokemons = []
+  }
+
+  canDeactivate(): boolean {
+    if (this.isEdit && this.formEditPurchase.dirty) {
+      return confirm('You have unsaved changes. Do you really want to leave?')
+    }
+
+    return true
   }
 }
