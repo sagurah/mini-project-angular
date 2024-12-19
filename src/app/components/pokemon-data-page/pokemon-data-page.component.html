@@ -36,9 +36,6 @@
           <th mat-header-cell *matHeaderCellDef>Actions</th>
           <td mat-cell *matCellDef="let data">
             <div class="flex gap-1">
-              <!-- <button mat-mini-fab color="warn" (click)="viewData(data)">
-                <mat-icon class="bg-yelow-600">visibility</mat-icon>
-              </button> -->
               <button mat-mini-fab color="warn" (click)="editData(data)">
                 <mat-icon class="bg-yelow-600">edit</mat-icon>
               </button>
@@ -104,6 +101,13 @@
             }
           </mat-form-field>
         </form>
+        <mat-divider></mat-divider>
+        <div class="my-2 flex flex-col gap-2">
+          <div class="flex gap-2 p-2 bg-slate-300 rounded-md"  *ngFor="let item of selectedPokemons">
+            <span class="font-medium">{{ item.pokemon.join(', ') }} - </span>
+            <span>{{ item.quantity }} biji</span>
+          </div>
+        </div>
       </mat-card-content>
       <mat-card-footer class="px-5">
         <div class="flex gap-2">

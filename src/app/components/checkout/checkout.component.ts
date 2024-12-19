@@ -46,7 +46,12 @@ export class CheckoutComponent implements OnInit {
         email,
         address,
         phone,
-        pokemonToBuy: this.cartItems
+        pokemonToBuy: this.cartItems.map(item => {
+          return {
+            quantity: item.quantity,
+            pokemon: Array.from({ length: item.quantity }).map(() => item.pokemon.name)
+          }
+        })
       }
       await this.rtdb.saveFormSubmission(order)
       this.store.dispatch(clearCart())

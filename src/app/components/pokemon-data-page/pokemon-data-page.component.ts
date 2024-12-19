@@ -98,6 +98,8 @@ export class PokemonDataPageComponent implements OnInit, AfterViewInit {
       phone: data.phone,
       address: data.address
     })
+
+    this.selectedPokemons = data.pokemonToBuy
   }
 
   async updateData() {
@@ -120,13 +122,6 @@ export class PokemonDataPageComponent implements OnInit, AfterViewInit {
   cancelEdit() {
     this.isEdit = false
     this.formEditPurchase.reset()
-  }
-
-
-  viewData(data: any) {
-    this.isViewingDetails = true
-    this.selectedPokemons = data.pokemonToBuy
-    console.log(this.selectedPokemons)
   }
 
   closeDetails() {
