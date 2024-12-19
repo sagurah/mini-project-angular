@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BiodataComponent } from './biodata/biodata.component';
 import { HomepageComponent } from './homepage/homepage.component';
-import { NavbarComponent } from './navbar/navbar.component';
 import { AuthGuard } from './guards/auth.guard';
 import { PokemonListComponent } from './components/pokemon-list/pokemon-list.component';
 import { PokemonDetailPageComponent } from './components/pokemon-detail-page/pokemon-detail-page.component';
@@ -13,7 +12,7 @@ import { CanDeactivateGuard } from './guards/can-deactivate.guard';
 
 const routes: Routes = [
   {
-    'path': 'auth',
+    path: 'auth',
     component: AuthComponent
   },
   {
@@ -44,10 +43,10 @@ const routes: Routes = [
       },
     ]
   },
-  // {
-  //   path: '**',
-  //   redirectTo: 'homepage'
-  // },
+  {
+    path: '**',
+    redirectTo: 'homepage'
+  },
 ];
 
 @NgModule({
