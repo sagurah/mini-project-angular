@@ -1,0 +1,16 @@
+<!-- Create navbar -->
+<nav class="sticky top-0 flex justify-between items-center bg-blue-950 w-full rounded-b-lg shadow-xl p-4">
+  <a [routerLink]="'/homepage'" class="text-2xl text-white font-bold bg-gradient-to-l from-blue-800 via-blue-900 to-blue-800 p-2 rounded-lg hover:bg-blue-950 transition-all">Pokemonize</a>
+  <div class="flex items-center justify-center gap-1">
+    <a [routerLink]="'/homepage'" class="text-white hover:underline transition-all px-4 py-2 rounded-lg">Home</a>
+    <a [routerLink]="'/biodata'" class="text-white hover:underline transition-all px-4 py-2 rounded-lg">Biodata</a>
+    <a [routerLink]="'/pokemon'" class="text-white hover:underline transition-all px-4 py-2 rounded-lg">Pokemon</a>
+    <a [routerLink]="'/pokemon-data'" class="text-white hover:underline transition-all px-4 py-2 rounded-lg">Submission</a>
+    <button [routerLink]="'/cart'" mat-button-icon class="flex items-center justify-center bg-blue-700 rounded-lg p-2 text-white gap-1">
+      <span class="font-medium">{{ cartItemCount$ | async }}</span>
+      <mat-icon class="h-5">shopping_cart</mat-icon>
+    </button>
+    <mat-divider></mat-divider>
+    <a (click)="logout()" [routerLink]="'/auth'" class="text-white bg-red-600 hover:bg-red-300 transition-all px-4 py-2 rounded-lg">Logout</a>
+  </div>
+</nav>

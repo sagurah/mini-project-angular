@@ -1,6 +1,8 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { PokemonService } from './../../services/pokemon.service';
 import { Component, OnInit } from '@angular/core';
+import { addToCart } from '../../state/cart/cart.actions';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-pokemon-detail-page',
@@ -18,7 +20,8 @@ export class PokemonDetailPageComponent implements OnInit {
   constructor(
     private pokemonService: PokemonService,
     private router: Router,
-    public route: ActivatedRoute
+    public route: ActivatedRoute,
+    private store: Store
   ) {}
 
   setSelectedEvolutionName(name: string) {
@@ -77,5 +80,11 @@ export class PokemonDetailPageComponent implements OnInit {
     }
 
     this.fetchPokemonEvolution()
+  }
+
+  addPokemonToCart(pokemon: any) {
+    const cartItem = { pokemon, quantity: 1 }
+    this.store.dispatch(addToCart(cartItem))
+    alert(`Pokemon ${pokemon.name} added to cart!`)
   }
 }

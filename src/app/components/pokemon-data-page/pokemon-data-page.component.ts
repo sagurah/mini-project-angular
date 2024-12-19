@@ -42,7 +42,7 @@ export class PokemonDataPageComponent implements OnInit, AfterViewInit {
   isViewingDetails: boolean = false;
   selectedDataId: string = '';
   selectedPokemons: any[] = [];
-  displayedColumns: string[] = ['address', 'email', 'firstName', 'lastName', 'actions']
+  displayedColumns: string[] = ['id', 'address', 'email', 'firstName', 'lastName', 'actions']
 
   constructor(private rtdb: RealtimeDatabaseService) { }
 
@@ -110,11 +110,18 @@ export class PokemonDataPageComponent implements OnInit, AfterViewInit {
         await this.rtdb.updateFormSubmission(this.selectedDataId, payload)
         await this.fetchBoughtPokemonData();
         this.isEdit = false
+        alert('Successfully edited data')
       } catch (error) {
         console.error(error)
       }
     }
   }
+
+  cancelEdit() {
+    this.isEdit = false
+    this.formEditPurchase.reset()
+  }
+
 
   viewData(data: any) {
     this.isViewingDetails = true

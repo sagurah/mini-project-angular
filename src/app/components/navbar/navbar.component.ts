@@ -1,3 +1,6 @@
+import { selectCartItemsCount } from './../../state/cart/cart.selectors';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,8 +10,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+  cartItemCount$: Observable<number>
 
-  constructor() { }
+  constructor(
+    private store: Store
+  ) {
+    this.cartItemCount$ = this.store.select(selectCartItemsCount)
+  }
 
   logout() {
     sessionStorage.clear()
